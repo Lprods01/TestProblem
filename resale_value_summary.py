@@ -1,6 +1,5 @@
 import argparse
 import pandas as pd
-import os;
 
 argument_parser = argparse.ArgumentParser()
 argument_parser.add_argument("csv_path", help="Specify the path to the .csv file (or the name if it's in the same directory as this script)")
