@@ -16,4 +16,3 @@ Write a python script that will read the following csv, clean the data and summa
 Write a pure local script
 The script should be able to read a file, process all the columns and output (to file) the answers (each a separate file)
 The schema of the inputs will be consistent, assume you are writing to ingest many files.
-
