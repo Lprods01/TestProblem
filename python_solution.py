@@ -18,24 +18,29 @@ errors = []
 banner = "\n"+"*"*40+"\n"
 
 def cash_value_to_float(cash_value_str):
-    # remove currency symbols and separators
-    cleaned_value_str = cash_value_str.replace('$', '').replace(',', '')
-    # make float
-    cash_value_float = float(cleaned_value_str)
-    cash_value = round(cash_value_float, 2)
+    try:
+        # remove currency symbols and separators
+        cleaned_value_str = cash_value_str.replace('$', '').replace(',', '')
+        # make float
+        cash_value_float = float(cleaned_value_str)
+        cash_value = round(cash_value_float, 2)
+    except Exception as e:
+        errors.append(f"{banner}ERROR \nCould not handle {e}{banner}\n")
     return cash_value
 
 
 if __name__ == "__main__":
     for root, dirs, files in os.walk('.'):
         for file in files:
-            if os.path.splitext(file)[1] == '.csv':
+            if os.path.splitext(file)[1] == '.csv' and 'total_resale' not in file:
+
                 full_path = os.path.join(root,file)
                 try:
                     with open(full_path, newline='') as csv_file:
                         reader = csv.DictReader(csv_file)
                         for row in reader:
                             resale_value = cash_value_to_float(row['Resale Value'])
+                            if resale_value == None: print("oops!")
                             if str(row['Item']) in itemized_total_resale_values.keys():
                                 itemized_total_resale_values[str(row['Item'])] += resale_value
                             else: itemized_total_resale_values[str(row['Item'])] = resale_value
@@ -48,7 +53,7 @@ if __name__ == "__main__":
     total_resale_values = round(total_resale_values, 2)
     
     # write info to csv files
-    with open("itemizedResaleTotals.csv", 'w', newline = '') as csv_file:
+    with open("itemized_total_resale.csv", 'w', newline = '') as csv_file:
         fieldnames = ['Item', 'Total Resale Value']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
@@ -64,7 +69,7 @@ if __name__ == "__main__":
     #         writer.writeheader()
     #         writer.writerow({'Item': str(item), 'Total Resale Value': itemized_total_resale_values[item]})
 
-    with open("totalResaleTotals.csv", 'w', newline = '') as csv_file:
+    with open("total_total_resale.csv", 'w', newline = '') as csv_file:
         fieldnames = ['Item', 'Total Resale Value']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
