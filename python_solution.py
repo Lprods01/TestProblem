@@ -11,6 +11,7 @@ comment out the code solution for the prior case (printing each itemized value t
 '''
 import csv
 import os
+import sys
 
 total_resale_values = 0
 itemized_total_resale_values = {}
@@ -25,7 +26,7 @@ def cash_value_to_float(cash_value_str):
         cash_value_float = float(cleaned_value_str)
         cash_value = round(cash_value_float, 2)
     except Exception as e:
-        errors.append(f"{banner}ERROR \nCould not handle {e}{banner}\n")
+        errors.insert(0,f"\tERROR on row: \n\t{row} \n\n\tCould not handle {e}{banner}")
     return cash_value
 
 
@@ -46,7 +47,7 @@ if __name__ == "__main__":
                             else: itemized_total_resale_values[str(row['Item'])] = resale_value
                             total_resale_values += resale_value
                 except Exception as e:
-                    errors.append(f"{banner}ERROR on file: {file}\nCould not handle {e}{banner}\n")
+                    errors.insert(0,f"{banner}ERROR on file: {file}\nCould not handle: {e}{banner}")
     
     # round totals to account for floating point errors
     itemized_total_resale_values = {key: round(value, 2) for key, value in itemized_total_resale_values.items()}

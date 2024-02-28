@@ -1,0 +1,15 @@
+
+****************************************
+ERROR on file: FaultyDataTest2.csv
+Could not handle: 'Resale Value'
+****************************************
+
+****************************************
+ERROR on file: FaultyDataTest.csv
+Could not handle: local variable 'cash_value' referenced before assignment
+****************************************
+	ERROR on row: 
+	{'Qty': '2', 'Item': 'F01', 'Price Level': '5', 'Price Type': 'R', 'Resale Value': '$asdfasd.00', 'Resale Per Ticket': '$asdfas.00', 'Resale Difference': '-$2xalksdjfh.86', 'Resale Date': '9/5/2019', 'Seatblock1': 'U:525:S:8,9'} 
+
+	Could not handle could not convert string to float: 'asdfasd.00'
+****************************************

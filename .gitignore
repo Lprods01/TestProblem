@@ -1,7 +1,7 @@
 TestData2.csv 
 
-FaultyDataTest2.csv  
-FaultyDataTest.csv
+# FaultyDataTest2.csv  
+# FaultyDataTest.csv
 
 totalResaleTotals.csv
 itemizedResaleTotals.csv
@@ -14,4 +14,4 @@ F05_total_resale.csv
 F06_total_resale.csv
 F07_total_resale.csv
 
-ErrLogs.txt
+# ErrLogs.txt
